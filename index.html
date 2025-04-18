@@ -18,6 +18,19 @@
       pointer-events: none;
       opacity: 0.5;
     }
+    #chatBody::before {
+        content: "Made by Team 7 RPL - SMK Mudikal - 2025";
+        position: absolute;
+        font-size: 1rem;
+        color: rgba(0, 0, 0, 0.05);
+        transform: rotate(0deg);
+        white-space: nowrap;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        pointer-events: none;
+        z-index: 0;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -29,7 +42,7 @@
     </header>
 
     <!-- Chat Body -->
-    <main id="chatBody" class="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
+    <main id="chatBody" class="relative flex-1 overflow-y-auto p-4 space-y-4 bg-white">
       <div class="flex items-start gap-2">
         <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">M</div>
         <div class="bg-gray-200 p-3 rounded-lg max-w-[80%]">Halo! Pilih pertanyaan yang ingin kamu tanyakan.</div>
