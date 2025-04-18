@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chatbot Mudikal</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -10,13 +10,13 @@
       content: '|';
       animation: blink 1s infinite;
     }
-    .prompt-btn.loading {
-        pointer-events: none;
-        opacity: 0.5;
-    }
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
+    }
+    .prompt-btn.loading {
+      pointer-events: none;
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -35,84 +35,14 @@
       </div>
     </main>
 
-    <!-- Prompt Buttons -->
+    <!-- Prompt Area -->
     <div id="promptArea" class="bg-gray-50 p-4 border-t space-y-2">
-        <button onclick="sendPrompt('Apa saja jurusan di sekolah ini?')" class="prompt-btn w-full bg-green-500 text-white py-2 px-4 rounded">Apa jurusan di sekolah ini?</button>
-        <button onclick="sendPrompt('Bagaimana cara daftar ulang?')" class="prompt-btn w-full bg-green-500 text-white py-2 px-4 rounded">Bagaimana cara daftar ulang?</button>
-        <button onclick="sendPrompt('Kapan waktu PPDB dibuka?')" class="prompt-btn w-full bg-green-500 text-white py-2 px-4 rounded">Kapan waktu PPDB dibuka?</button>
-      </div>
-      
+      <button onclick="sendPrompt('Apa saja jurusan di sekolah ini?')" class="prompt-btn w-full bg-green-500 text-white py-2 px-4 rounded">Apa jurusan di sekolah ini?</button>
+      <button onclick="sendPrompt('Bagaimana cara daftar ulang?')" class="prompt-btn w-full bg-green-500 text-white py-2 px-4 rounded">Bagaimana cara daftar ulang?</button>
+      <button onclick="sendPrompt('Kapan waktu PPDB dibuka?')" class="prompt-btn w-full bg-green-500 text-white py-2 px-4 rounded">Kapan waktu PPDB dibuka?</button>
+    </div>
   </div>
+  <script src="script/main.js"></script>
 
-  <script>
-    const chatBody = document.getElementById('chatBody');
-    const buttons = document.querySelectorAll('.prompt-btn');
-  
-    function toggleButtons(disabled) {
-      buttons.forEach(btn => {
-        if (disabled) {
-          btn.classList.add('loading');
-        } else {
-          btn.classList.remove('loading');
-        }
-      });
-    }
-  
-    function sendPrompt(promptText) {
-      toggleButtons(true); // Kunci tombol
-  
-      // User Message
-      const userDiv = document.createElement('div');
-      userDiv.className = 'flex items-end justify-end gap-2';
-      userDiv.innerHTML = `
-        <div class="bg-green-100 p-3 rounded-lg max-w-[80%]">${promptText}</div>
-        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">U</div>
-      `;
-      chatBody.appendChild(userDiv);
-      chatBody.scrollTop = chatBody.scrollHeight;
-  
-      // Bot Typing...
-      const botTypingDiv = document.createElement('div');
-      botTypingDiv.className = 'flex items-start gap-2 bot-typing';
-      botTypingDiv.innerHTML = `
-        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">B</div>
-        <div class="bg-gray-200 p-3 rounded-lg max-w-[80%] italic text-gray-600">Mengetik...</div>
-      `;
-      chatBody.appendChild(botTypingDiv);
-      chatBody.scrollTop = chatBody.scrollHeight;
-  
-      setTimeout(() => {
-        botTypingDiv.remove();
-        const botResponse = document.createElement('div');
-        botResponse.className = 'flex items-start gap-2';
-  
-        let reply = '';
-        switch(promptText) {
-          case 'Apa saja jurusan di sekolah ini?':
-            reply = 'Jurusan di sekolah ini: 1. RPL (Rekayasa Perangkat Lunak) 2. TKR (Teknik Kendaraan Ringan) 3. TBKR (Teknik Body Kendaraan Ringan) 4. TP (Teknik Permesinan) 5. TITL (Teknik Instalasi Tenaga Listrik).';
-            break;
-          case 'Bagaimana cara daftar ulang?':
-            reply = 'Untuk daftar ulang, silakan datang langsung ke sekolah dengan membawa dokumen lengkap dan bukti pembayaran administrasi.';
-            break;
-          case 'Kapan waktu PPDB dibuka?':
-            reply = 'Waktu PPDB biasanya dibuka mulai bulan Januari hingga Juni. Informasi resmi akan diumumkan melalui website dan media sosial sekolah.';
-            break;
-          default:
-            reply = 'Maaf, saya belum memiliki jawaban untuk pertanyaan itu.';
-        }
-  
-        botResponse.innerHTML = `
-          <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">M</div>
-          <div class="bg-gray-200 p-3 rounded-lg max-w-[80%]">${reply}</div>
-        `;
-        chatBody.appendChild(botResponse);
-        chatBody.scrollTop = chatBody.scrollHeight;
-  
-        toggleButtons(false); // Buka tombol kembali
-      }, 1000);
-    }
-  </script>
-  
-  
 </body>
 </html>
